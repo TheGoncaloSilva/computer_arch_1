@@ -8,8 +8,8 @@ str2: 	.asciiz "Valor ignorado\n"
 str3: 	.asciiz	"A soma dos positivos e': "
 	.eqv print_string,4
 	.eqv read_int,5
-	.eqv print_int10,36
-	.text
+	.eqv print_int10,1
+	.text			# Indica que é uma zona de código"
 	.globl main
 main: 	li $t0,0 		# soma = 0;
 	li $t2,0		# i = 0;
@@ -21,9 +21,9 @@ for: 	bge $t2,5,endfor 	# while(i < 5) {
 							
 	ori $v0,$0,read_int	# value=read_int();
 	syscall 		# valor lido e' retornado em $v0
-	or $t1,$v0,$0
+	move $t1,$v0
 			
-	ble $t1,$0,else 	# if(value > 0)
+if:	ble $t1,$0,else 	# if(value > 0)
 	add $t0,$t0,$t1		# soma += value;
 	j endif			#
 	
