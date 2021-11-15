@@ -1,9 +1,11 @@
 	# Alterar de modo a aceder ao array com índices
 				# Mapa de registos
-				# p: $t0
+				# array: $t0
 				# pultimo:$t1
-				# *p $t2
+				# i: $t2
 				# soma: $t3
+				# array[i]: $t4
+				# pos i + array: $t5
 	.data
 array:	.word 7692,23,5,234	# Guardar um endereço na memória para o array
 				# 0x1e0c,0x17,0x5,0xEA
@@ -13,18 +15,19 @@ array:	.word 7692,23,5,234	# Guardar um endereço na memória para o array
 	.text
 	.globl main
 main: 	li $t3,0 		# soma = 0;
-	li $t4,SIZE 		#
-	sub $t4,$t4,1 		# $t4 = 3 (SIZE - 1) (tbm dá addi $t4,$t4,-1)
-	sll $t4,$t4,2 		# ou "mul $t4,$t4,4" (para multiplicar por 4, por causa de ser address)
-	la $t0,array 		# p = array; (Inicializar com a posição inicial)
-	addu $t1,$t0,$t4 	# pultimo = array + SIZE - 1;
+	li $t1,SIZE 		# pultimo = ultima posição do array
+	sub $t1,$t1,1 		# $t1 = 3 (SIZE - 1) (tbm dá addi $t1,$t1,-1)
+	sll $t1,$t1,2 		# ou "mul $t1,$t1,4" (para multiplicar por 4, por causa de ser address)
+	la $t0,array 		# array = array; (Inicializar com a posição inicial)
 	
-while: 				#
-	bgtu $t0,$t1,endw 	# while(p <= pultimo){ (Por causa de estarmos a trabalhar com ponteiros 
+	li $t2,0		# i = 0;
+	
+while: 	bgtu $t2,$t1,endw 	# while(p <= pultimo){ (Por causa de estarmos a trabalhar com ponteiros 
 				# e valores em binários)
-	lw $t2,0($t0) 		# $t2 = *p; (lw para carregar a posição inteira)
-	add $t3,$t3,$t2		# soma = soma + (*p);
-	addiu $t0,$t0,4 	# p++; (soma 4 por cada posição do array)
+	add $t5,$t0,$t2		# endereço do array inicial + i
+	lw $t4,0($t5) 		# $t4 = array + i; (lw para carregar a posição inteira)
+	add $t3,$t3,$t4		# soma = soma + array[i];
+	addiu $t2,$t2,4		# i++; (soma 4 por cada posição do array)
 	
 	j while
 endw:	 			# }
