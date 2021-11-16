@@ -36,12 +36,12 @@ while:
 	add $t2,$t3,$t4		# temp1 = 'a' + 'A'
 				# 'a'=0x61, 'A'=0x41, 'a'-'A'=0x20
 				
-	subu $t0,$t0,$t2	# *p = *p - ('a'+'A')
+	subu $t1,$t1,$t2	# *p = *p - ('a'+'A')
 	
-	addiu $t1,$t1,1		# Percorrer outra posição
+	addiu $t0,$t0,1		# Percorrer outra posição
 	j while
 endw:				# }
-	move $a0,$t0		# mover a string para ser imprimida
+	la $a0,str		# mover a string para ser imprimida
 	li $v0,PRINT_STRING	
 	syscall			# print_string(str)
 	
