@@ -33,11 +33,14 @@ while:
 	
 	li $t3,'a'		# carregar para um registo, de forma a ser possível operar
 	li $t4,'A'
-	subu $t2,$t4,$t3	# temp1 = 'a' + 'A'
-				# 'a'=0x61, 'A'=0x41, 'a'-'A'=0x20
-				
-	addu $t1,$t1,$t2	# *p = *p - ('a'+'A')
 	
+if:	blt $t1,$t3,endif	# if(*p >= 'a' && *p <= 'z'){ (range das minúsculas)
+	bgt $t1,'z',endif
+	
+	subu $t2,$t4,$t3	# temp1 = 'A' - 'a'
+				# 'a'=0x61, 'A'=0x41, 'a'-'A'=0x20			
+	addiu $t1,$t1,$t2	# *p = *p + ('A'-'a')
+endif:				# }
 	sb $t1,0($t0)
 	addiu $t0,$t0,1		# Percorrer outra posição
 	j while
