@@ -1,3 +1,5 @@
+	# Pequena alteração em relação ao guião, transforma maiúsculas em minúsculas e vice-versa
+	# Para funcionar como o guião, comentar o jump da linha 43
 				# Mapa de registos
 				# p: $t0
 				# *p: $t1
@@ -37,12 +39,13 @@ while:
 if1:	blt $t1,$t3,endif1	# if(*p >= 'a' && *p <= 'z'){ (range das minúsculas)
 	bgt $t1,'z',endif1
 			
-	addiu $t1,$t1,-0x20	# *p = *p + ('A'-'a') (minusculas para maisculas)
+	addiu $t1,$t1,-0x20	# *p = *p + ('A'-'a') (minusculas para maiusculas)
+	j endif2		# Devia ser um else, pois se uma das condições dispara ele não deve fazer a outra
 endif1:				# }
-if2:	blt $t1,'A',endif2	# if(*p >= 'A' && *p <= 'Z'){ (range das maiúsculas)
+if2:	blt $t1,$t4,endif2	# if(*p >= 'A' && *p <= 'Z'){ (range das maiúsculas)
 	bgt $t1,'Z',endif2
 	
-	addiu $t1,$t1,0x20	# *p = *p + ('A'-'a') (maiuscala para minuscula)
+	addiu $t1,$t1,0x20	# *p = *p + ('A'-'a') (maiuscula para minuscula)
 endif2:
 
 	sb $t1,0($t0)

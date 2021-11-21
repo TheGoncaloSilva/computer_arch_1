@@ -1,5 +1,5 @@
 				# Mapa de registos
-				# p: $t0
+				# p (= &array): $t0
 				# pultimo:$t1
 				# *p $t2
 				# soma: $t3
