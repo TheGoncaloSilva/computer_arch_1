@@ -45,7 +45,7 @@ if: 	sll $t7,$t5,2 	# $t7 = i * 4
 	addu $t7,$t7,$t6 	# $t7 (&lista[i]) = &lista[0] + i
 	lw $t8,0($t7) 	# $t8 (lista[i]) = lista[i]
 	lw $t9,4($t7) 	# $t9 = lista[i+1]
-	ble $t8,$t9,endif 	# if(lista[i] > lista[i+1]){
+	bleu $t8,$t9,endif 	# if(lista[i] > lista[i+1]){
 	sw $t8,4($t7) 	# lista[i+1] = $t8
 	sw $t9,0($t7) 	# lista[i] = $t9
 	li $t4,TRUE 	#

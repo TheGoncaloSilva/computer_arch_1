@@ -11,8 +11,8 @@
 	.eqv N,35		# 
 	.eqv READ_INT,5
 	.eqv PRINT_INT10,1
-arrA:	.space N		# Pôr manualmente este valor em ordem 2^x
-arrB:	.space N
+arrA:	.space 4*35		# Pôr manualmente este valor em ordem 2^x
+arrB:	.space 4*35		# igual
 	.text
 	.globl main
 main:	
@@ -41,7 +41,7 @@ for2:
 	lw $t3,0($t2)
 if:	remu $t7,$t3,2		# Temp2 = (*p1 % 2)
 	beq $t7,0,else		# if( (*p1 % 2) != 0 ){
-	sw $t3,0($t4)		# p2 = *p1                           <= ERRO NESTE
+	sw $t3,0($t4)		# p2 = *p1                      
 	addiu $t4,$t4,4		# p2++ 
 	addi $t1,$t1,1		# n_odd++;
 	j endif
