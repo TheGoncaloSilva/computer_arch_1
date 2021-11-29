@@ -1,0 +1,19 @@
+				# i: $t0
+				#
+	.eqv SIZE,...
+	.data
+array:	.word str1,...
+str1: 	.asciiz "Array"
+str2: 	.asciiz "de"
+str3: 	...
+	.text
+	.globl main
+main:
+	...
+for: 	...
+	la $t1,array 		# $t1 = &array[0]
+	sll $t2,$t0,2		#
+	addu $t2,... 		# $t2 = &array[i]
+	lw $a0,... 		# $a0 = array[i]
+	...
+	jr $ra
