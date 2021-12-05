@@ -11,8 +11,8 @@
 	.eqv N,35		# 
 	.eqv READ_INT,5
 	.eqv PRINT_INT10,1
-arrA:	.space 4*35		# Pôr manualmente este valor em ordem 2^x
-arrB:	.space 4*35		# igual
+arrA:	.space 140		# 35 * por causa de serem inteiros (lw)
+arrB:	.space 140		# igual
 	.text
 	.globl main
 main:	
@@ -20,7 +20,9 @@ main:
 	li $t1,0		# n_odd = 0;
 	
 	la $t2,arrA		# p1 = arrA
-	addiu $t6,$t2,N		# Temp1 = a + N
+	li $t6,N		 	# $t6 = SIZE;
+	sll $t6,$t6,2		# $t6 = SIZE << 2
+	addiu $t6,$t2,N		# $t6 = a + N
 for1:	
 	bge $t2,$t6,endf1	# for( p1 = a; p1 < (a + N); p1++ ){
 	
@@ -34,7 +36,7 @@ for1:
 endf1:				# }
 	la $t2,arrA		# p1 = arrA
 	la $t4,arrB		# p2 = arrB
-	addiu $t6,$t2,N		# Temp1 = a + N
+				# (a + N) já definido anteriormente
 for2:	
 	bge $t2,$t6,endf2	# for( p1 = a; p2 = b; p1 < (a + N); p1++){
 	

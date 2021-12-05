@@ -31,6 +31,7 @@ if2:	ble $t0,$t3,endif2	# if(val > max)
 endif2:
 if3:	bge $t0,$t2,endif1	# if(val < min)
 	move $t2,$t0		# min = val;
+endif3
 endif1:				# }
 	
 	addi $t1,$t1,1		# n++; 
