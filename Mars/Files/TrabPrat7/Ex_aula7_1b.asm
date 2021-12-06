@@ -1,25 +1,26 @@
 	# Função main
 	# Sub rotina intermédia, usar os registos $sx para salvaguardar valores
 				# Mapa de registos
-				# entrada_1 sub-rotina(strlen):
-				# saida_1 sub-rotina(strlen): 
+				# entrada_1 sub-rotina(strlen): $a0
+				# saida_1 sub-rotina(strlen): $v0
 	.data
 	.eqv PRINT_INT10,1
 str:	.asciiz "Arquitetura de computadores I"
 	.text
 	.globl main
 main:	
-	move $s0,$ra		# salvaguarda $ra
+	addiu $sp,$sp,-4  	# reserva espaço na stack
+	sw $ra,0($sp)		# salvaguarda $ra
+				# arquitetura "caller-saved"
 	la $a0,str		# $a0 = str (registo de entrada para a subrotina)
-	
 	jal strlen		# strlen(str);
-	
 	move $a0,$v0
 	li $v0,PRINT_INT10
 	syscall			# print_int10(strlen(str));
 	
-	move $ra,$s0		# $s0 = $ra
 	li $v0,0			# return 0;
+	lw $ra,0($sp)		# repõe o valor de $ra
+	addiu $sp,$sp,4		# liberta espaço da stack
 	jr $ra 			# Fim da fução main
 	
 	# O argumento da função é passado em $a0 

@@ -6,7 +6,8 @@
 				# *s: $t0
 				# len: $t1
 				# retorno: $v0
-				 
+	.data
+	.text			 
 strlen: li $t1,0   		# len = 0; 
 while: 	lb $t0,0($a0)   		# while(*s++ != '\0') 
   	addiu $a0,$a0,1  	# (array de caracteres, pos 1 a 1)
