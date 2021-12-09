@@ -17,13 +17,12 @@
 strcpy: 
 	li $t0,0 		# i = 0; 
 do:				# do { 
-	sll $t1,$t0,2		# $t1 = i << 2
-	addu $t2,$t1,$a1	# $t2 = &src[i]
-	addu $t1,$t1,$a0	# $t1 = &dst[i]
-  	lw $t3,0($t2)		# $t3 = src[i]
-  	sw $t3,0($t1)    	# dst[i] = src[i]; 
+	addu $t2,$t0,$a1	# $t2 = &src[i]
+	addu $t1,$t0,$a0	# $t1 = &dst[i]
+  	lb $t3,0($t2)		# $t3 = src[i]
+  	sb $t3,0($t1)    	# dst[i] = src[i]; 
   	
   	addi $t0,$t0,1		# i++;
-while:	beq $t3,'\0',do		# } while(src[i++] != '\0'); 
+while:	bne $t3,'\0',do		# } while(src[i++] != '\0'); 
  	move $v0,$a0		# return dst;
  	jr $ra			# Fim da função strcpy

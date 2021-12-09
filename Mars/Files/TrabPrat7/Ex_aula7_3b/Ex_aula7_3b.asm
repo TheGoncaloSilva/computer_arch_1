@@ -9,7 +9,9 @@
 	.eqv STR_MAX_SIZE,30
 	.eqv PRINT_STRING,4
 	.eqv PRINT_INT10,1
+	.eqv PRINT_CHAR,11
 str1:	.asciiz "I serodatupmoC ed arutetiuqrA"
+		#"alo"
 				# static char str1[]
 	.align 2		
 str2:	.space 31		# static char str2[STR_MAX_SIZE + 1]
@@ -32,7 +34,7 @@ if:	bgt $s1,STR_MAX_SIZE,else # if(strlen(str1) <= STR_MAX_SIZE) {
   	li $v0,PRINT_STRING
   	syscall			# print_string(str2); 
   	li $a0,'\n'		
-  	li $v0,PRINT_STRING
+  	li $v0,PRINT_CHAR
   	syscall			# print_string("\n"); 
   	
   	la $a0,str2		# $a0 = str2
