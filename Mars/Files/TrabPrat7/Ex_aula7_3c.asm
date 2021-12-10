@@ -8,21 +8,20 @@
 				# Mapa de registos:
 				# *dst: $a0
 				# *src: $a1
-				# i: $t0
-				# &dst[i]: $t1
-				# &src[i]: $t2
+				# p: $t0
+				# *p: $t1
 				# Temp1: $t3
 	.text
-	.globl strcpy
-strcpy: 
-	li $t0,0 		# i = 0; 
+	.globl strcpy_p
+strcpy_p:
+	move $t0,$a0		# p1 = dst; 
+	move $t2,$a1		# p2 = src; 
 do:				# do { 
-	addu $t2,$t0,$a1	# $t2 = &src[i]
-	addu $t1,$t0,$a0	# $t1 = &dst[i]
-  	lb $t3,0($t2)		# $t3 = src[i]
-  	sb $t3,0($t1)    	# dst[i] = src[i]; 
+  	lb $t3,0($t2)		# $t3 = *p2
+  	sb $t3,0($t0)    	# *p1 = *p2; 
   	
-  	addi $t0,$t0,1		# i++;
+  	addiu $t2,$t2,1		# p2++;
+  	addiu $t0,$t0,1		# p1++;
 while:	bne $t3,'\0',do		# } while(src[i++] != '\0'); 
  	move $v0,$a0		# return dst;
  	jr $ra			# Fim da função strcpy
