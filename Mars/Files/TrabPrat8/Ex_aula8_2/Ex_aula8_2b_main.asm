@@ -57,6 +57,14 @@ do:       			# do {
   	move $a0,$v0
   	li $v0,print_string
   	syscall			# print_string( itoa(val, 16, str) ); 
+  	
+  	li $a0,'\n'
+	li $v0,PRINT_CHAR
+	syscall			# print_char('\n');
+				# Exercicio 2c
+	move $a0,$s1		# entrada $a0 = val
+	li $a1,2			# entrada $a1 = base
+	jal print_int		# print_int_ac1(val,base)
   		
 while: 	bne $s1,0,do   		# } while(val != 0) 
   	li $v0,0    		# return 0; 
