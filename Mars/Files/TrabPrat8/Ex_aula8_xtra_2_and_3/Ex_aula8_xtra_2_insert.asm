@@ -1,6 +1,6 @@
-	# A função insert() permite inserir a string "src" na string "dst", a partir da posição 
+	# A funï¿½ï¿½o insert() permite inserir a string "src" na string "dst", a partir da posiï¿½ï¿½o 
 	# "pos". 	
-	# Sub rotina Intermédia, usar os registos $sx para salvaguardar valores.
+	# Sub rotina Intermï¿½dia, usar os registos $sx para salvaguardar valores.
 	# Habilitar "assemble all files in directory" setting
 	# char *insert(char *dst, char *src, int pos) {
 				# Mapa de registos:
@@ -17,7 +17,7 @@
 	.globl insert_char
 insert_char:
 
-	addiu $sp,$sp,-32 	# reserva espaço na stack
+	addiu $sp,$sp,-32 	# reserva espaï¿½o na stack
 	sw $ra,0($sp)		# salvaguarda $ra
 	sw $s0,4($sp)		# salvaguarda $s0
 	sw $s1,8($sp)		# salvaguarda $s1
@@ -71,13 +71,13 @@ endf2:				# }
 endif:
 
 	move $v0,$s6		# return p;			
-	lw $ra,0($sp)		# repôr $ra
-	lw $s0,4($sp)		# repôr $s0
-	lw $s1,8($sp)		# repôr $s1
-	lw $s2,12($sp)		# repôr $s2
-	lw $s3,16($sp)		# repôr $s3
-	lw $s4,20($sp)		# repôr $s4
-	lw $s5,24($sp)		# repôr $s5
-	lw $s6,28($sp)		# repôr $s6
-	addiu $sp,$sp,32 	# libertar espaço na stack
+	lw $ra,0($sp)		# repï¿½r $ra
+	lw $s0,4($sp)		# repï¿½r $s0
+	lw $s1,8($sp)		# repï¿½r $s1
+	lw $s2,12($sp)		# repï¿½r $s2
+	lw $s3,16($sp)		# repï¿½r $s3
+	lw $s4,20($sp)		# repï¿½r $s4
+	lw $s5,24($sp)		# repï¿½r $s5
+	lw $s6,28($sp)		# repï¿½r $s6
+	addiu $sp,$sp,32 	# libertar espaï¿½o na stack
 	jr $ra			# Fim do programa
