@@ -1,8 +1,8 @@
-	# A função max() calcula o valor máximo de um array de "n" elementos em formato vírgula 
-	# flutuante, precisão dupla. 
+	# A funï¿½ï¿½o max() calcula o valor mï¿½ximo de um array de "n" elementos em formato vï¿½rgula 
+	# flutuante, precisï¿½o dupla. 
 	# Habilitar "assemble all files in directory" setting
-	# Sub-rotina terminal: não devem ser usados registos $sx ou $f20...
-	# Parâmetros de entrada Double são enviados nos registos $f12 - $f15
+	# Sub-rotina terminal: nï¿½o devem ser usados registos $sx ou $f20...
+	# Parï¿½metros de entrada Double sï¿½o enviados nos registos $f12 - $f15
 	# Valores de retorno Double nos registos $f0 - $f3
 	# double max(double *p, unsigned int n) { 
 				# Mapa de registos 
@@ -14,11 +14,11 @@
 	.text
 	.globl max
 max:	
-	addiu $t0,$a1,-1		# n -= 1;
+	addiu $t0,$a1,-1	# n -= 1;
 	sll $t0,$t0,3		# $t0 = n << 3
 	addu $t0,$t0,$a0	# $t0 = p + (n-1)
 	l.d $f0,0($t0)		# max = *p
-	#addiu $a0,$a0,8		# p++; # não faz sentido excluirmos a primeira posição
+	#addiu $a0,$a0,8		# p++; # nï¿½o faz sentido excluirmos a primeira posiï¿½ï¿½o
 
 for:	bgtu $a0,$t0,endf	# for(; p <= u; p++) {
 
