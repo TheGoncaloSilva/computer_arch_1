@@ -23,8 +23,8 @@ aux_array:.space 40		# static int aux_array[SIZE];
 	.text
 	.globl main
 main:
-	addiu $sp,$sp,-4	# Salvguardar os valores
-	sw $ra,0($sp)		# valguardar o valor de $ra
+	addiu $sp,$sp,-4	# Salvaguardar os valores
+	sw $ra,0($sp)		# Salguardar o valor de $ra
 	
 	la $t2,array		# $t2 = &array[0];
 	la $t3,aux_array	# $t3 = &aux_array[0];
