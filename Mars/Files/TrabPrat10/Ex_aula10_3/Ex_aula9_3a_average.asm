@@ -1,12 +1,12 @@
-	# A funï¿½ï¿½o average() calcula o valor mï¿½dio de um array de reais codificados em formato 
-	# vï¿½rgula flutuante, precisï¿½o dupla
+	# A função average() calcula o valor médio de um array de reais codificados em formato 
+	# vírgula flutuante, precisão dupla
 	# Habilitar "assemble all files in directory" setting
-	# Sub-rotina terminal: nï¿½o devem ser usados registos $sx ou $f20...
-	# Parï¿½metros de entrada Double sï¿½o enviados nos registos $f12 - $f15
+	# Sub-rotina terminal: não devem ser usados registos $sx ou $f20...
+	# Parâmetros de entrada Double são enviados nos registos $f12 - $f15
 	# Valores de retorno Double nos registos $f0 - $f3
 	# double average(double *array, int n) { 
 				# Mapa de registos 
-				# double array: $a0 (Ponteiro para um array ï¿½ 
+				# double array: $a0 (Ponteiro para um array é 
 					# um INTEIRO, logo recebe-se no registo $a0)
 				# int n: $a1
 				# i: $t0
@@ -23,7 +23,7 @@ average:
 	l.d $f0,zero		# double sum = 0.0;
 for:	ble $t0,0,endf		# for(; i > 0; i--) {
 	
-	sll $t1,$t0,3		# $t1 = i << 3 (mï¿½ltiplo de 8)
+	sll $t1,$t0,3		# $t1 = i << 3 (múltiplo de 8)
 	addu $t1,$a0,$t1	# $t1 = &array[i]
 	l.d $f2,-8($t1)		# $t2 = array[i-1]
 	

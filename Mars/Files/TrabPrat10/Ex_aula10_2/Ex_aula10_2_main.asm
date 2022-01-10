@@ -1,3 +1,11 @@
+	# Função main (chama e testa a função sqrt)
+	# Sub rotina intermédia, usar os registos $sx para salvaguardar valores inteiros
+	# e registos $f20... para salvaguardar valores vírgula flututante
+	# Salvaguardar valor de $ra
+	# Parâmetros de entrada Double são enviados nos registos $f12 - $f15
+	# Incorpora as funções presentes no mesmo diretório (xtoy)
+	# Habilitar "assemble all files in directory" setting				
+				# Mapa de registos:
 	# Função main (chama e testa a função xtoy)
 	# Sub rotina intermédia, usar os registos $sx para salvaguardar valores inteiros
 	# e registos $f20... para salvaguardar valores vírgula flututante
@@ -7,13 +15,11 @@
 	# Habilitar "assemble all files in directory" setting				
 				# Mapa de registos:
 	.data
-	.eqv READ_FLOAT,6
-	.eqv READ_INT,5
-	.eqv PRINT_FLOAT,2	# $f12 = float;
+	.eqv READ_DOUBLE,7
+	.eqv PRINT_DOUBLE,3	# $f12 = double;
 	.eqv PRINT_STRING,4
-str1:	.asciiz "\nBase: "
-str2:	.asciiz "\nExpoente: "
-str3:	.asciiz "\nResultado: "
+str1:	.asciiz "\nRaiz: "
+str2:	.asciiz "\nResultado: "
 	.text
 	.globl main
 main:	
@@ -24,27 +30,19 @@ main:
 	li $v0,PRINT_STRING
 	syscall			# print_string(str1);
 	
-	li $v0,READ_FLOAT
+	li $v0,READ_DOUBLE
 	syscall			# $f0 = read_float();
+	
+	mov.d $f12,$f0		# $f12 = raiz;
+	jal sqrt		# sqrt(raiz);
 	
 	la $a0,str2
 	li $v0,PRINT_STRING
-	syscall			# print_string(str2);
-	
-	li $v0,READ_INT
-	syscall			# $v0 = read_int();
-	
-	mov.s $f12,$f0		# $f12 = x;
-	move $a0,$v0		# $a0 = y;
-	jal xtoy		# xtoy(x,y);
-	
-	la $a0,str3
-	li $v0,PRINT_STRING
 	syscall			# print_string(str3)
 	
-	mov.s $f12,$f0		# $f12 = xtoy(x,y)
-	li $v0,PRINT_FLOAT	
-	syscall			# print_float(xtoy(x,y))
+	mov.d $f12,$f0		# $f12 = sqrt(raiz)
+	li $v0,PRINT_DOUBLE	
+	syscall			# print_float(sqrt(raiz))
 	
 	li $v0,0		# return 0;
 	lw $ra,0($sp)		# repor $ra

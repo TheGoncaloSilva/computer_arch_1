@@ -16,11 +16,13 @@ n1:	.float 1.0
 	.text
 	.globl xtoy
 xtoy:
-	addiu $sp,$sp,-24	# Salvaguardar os valores
+	addiu $sp,$sp,-16	# Salvaguardar os valores
 	sw $ra,0($sp)		# guardar $ra
 	sw $s0,4($sp)		# guardar $s0
 	s.s $f20,8($sp)		# guardar $f20
-	s.s $f22,16($sp)	# guardar $f22
+	s.s $f22,12($sp)	# guardar $f22
+				# Quantidades single-point 
+				# ocupam 4 bytes de memória
 	
 	move $s0,$a0		# $s0 = y;	
 	mov.s $f20,$f12		# $f20 = x;
@@ -46,6 +48,6 @@ endfor:				# }
 	lw $ra,0($sp)		# guardar $ra
 	lw $s0,4($sp)		# guardar $s0
 	l.s $f20,8($sp)		# guardar $f20
-	l.s $f22,16($sp)	# guardar $f22
-	addiu $sp,$sp,24	# repor os valores do stack
+	l.s $f22,12($sp)	# guardar $f22
+	addiu $sp,$sp,16	# repor os valores do stack
 	jr $ra 			# Fim do programa
