@@ -17,6 +17,7 @@
 w1:	.asciiz "\nValor: "
 w2:	.asciiz "\Variância: "
 w3:	.asciiz "\Desvio Padrão:"
+	.align 3		# array de doubles * 8
 array:	.space 40		# 5 * 8
 	.text
 	.globl main
@@ -42,7 +43,7 @@ for1:	bge $t0,SIZE,endf1	# for(i=0;i<SIZE,i++){
 	j for1
 endf1:				# }
 	move $a0,$t1		# $a0 = *array;
-	li $a0,SIZE		# $a1 = SIZE;
+	li $a1,SIZE		# $a1 = SIZE;
 	jal var			# $f0 = var(*array,nval)
 	
 	la $a0,w2
@@ -53,8 +54,8 @@ endf1:				# }
 	li $v0,PRINT_DOUBLE
 	syscall			# print_double(var(*array,nval))
 	
-	move $a0,$t1		# $a0 = *array;
-	li $a0,SIZE		# $a1 = SIZE;
+	la $a0,array		# $a0 = *array;
+	li $a1,SIZE		# $a1 = SIZE;
 	jal stdev		# $f0 = stdev(*array,nval)
 	
 	la $a0,w3
