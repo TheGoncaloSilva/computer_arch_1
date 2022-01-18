@@ -15,8 +15,8 @@
 	.eqv READ_DOUBLE,7
 	.eqv PRINT_STRING,4
 w1:	.asciiz "\nValor: "
-w2:	.asciiz "\Variância: "
-w3:	.asciiz "\Desvio Padrão:"
+w2:	.asciiz "\nVariância: "
+w3:	.asciiz "\nDesvio Padrão:"
 	.align 3		# array de doubles * 8
 array:	.space 40		# 5 * 8
 	.text

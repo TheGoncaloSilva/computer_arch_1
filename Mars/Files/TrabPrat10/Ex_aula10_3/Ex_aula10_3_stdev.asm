@@ -10,7 +10,13 @@
 	.text
 	.globl stdev
 stdev:	
+	addiu $sp,$sp,-4	# Salvaguardar espaço na stack
+	sw $ra,0($sp)		# guardar $ra
+	
 	jal var			# $f0 = var(array, nval);
 	mov.d $f12,$f0		# $f12 = $f0
-	jal sqrt		# return sqrt( var(array, nval) );		
+	jal sqrt		# return sqrt( var(array, nval) );
+	
+	lw $ra,0($sp)		# repor $ra
+	addiu $sp,$sp,4		# libertar a stack		
 	jr $ra			# Fim da função stdev

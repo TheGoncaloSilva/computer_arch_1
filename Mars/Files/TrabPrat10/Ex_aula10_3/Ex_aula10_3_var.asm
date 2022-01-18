@@ -36,7 +36,8 @@ for:	bge $s2,$s1,endfor	# for(i=0, soma=0.0; i < nval; i++) {
 	
 	sll $t0,$s2,3		# $t0 = i << 3
 	addu $t0,$s0,$t0	# $t0 = &array[i]
-	l.s $f12,0($t0)		# $f12 = array[i]
+	l.d $f12,0($t0)		# $f12 = array[i]
+	cvt.s.d $f12,$f12	# (float) $f12
 	sub.s $f12,$f12,$f22	# $f12 = array[i] - media	
 	li $a0,2		# $a0 = 2
 	jal xtoy		# $f0 = xtoy(array[i] - media, 2);
@@ -47,7 +48,8 @@ for:	bge $s2,$s1,endfor	# for(i=0, soma=0.0; i < nval; i++) {
 	addi $s2,$s2,1		# i++;
 	j for
 endfor:				# }
-	mtc1 $s1,$f0		
+	mtc1 $s1,$f0
+	cvt.s.w $f0,$f0		
 	div.s $f0,$f20,$f0	# $f0 = soma / nval
 	cvt.d.s $f0,$f0		# return (double)soma / nval;	
 	
