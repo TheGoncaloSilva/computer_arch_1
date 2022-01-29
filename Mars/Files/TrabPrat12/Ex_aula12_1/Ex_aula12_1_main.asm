@@ -9,6 +9,7 @@
 	.eqv MAX_STUDENTS,4
 	.eqv PRINT_STRING,4
 	.eqv PRINT_FLOAT,2
+	.eqv PRINT_CHAR,11
 str1:	.asciiz "\nMedia: "
 	.align 2
 
@@ -44,9 +45,13 @@ main:
 	li $v0,PRINT_STRING
 	syscall			# print_string("\nmedia");
 	
-	#la $a0,media
-	#li $v0,PRINT_FLOAT
-	#syscall			# print_float(media);
+	l.s $f12,media
+	li $v0,PRINT_FLOAT
+	syscall			# print_float(media);
+	
+	li $a0,'\n'
+	li $v0,PRINT_CHAR
+	syscall			# print_char('\n');
 
 	move $a0,$t0		# $a0 = pmax
 	jal print_student	# print_student( pmax );
